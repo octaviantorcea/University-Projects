@@ -1,0 +1,90 @@
+Task 1
+
+  generate_probabilities_system.m
+    
+    Pentru A(1:3, :) valorile din matrice sunt hardcodate pentru ca rows > 2.
+  Apoi pentru fiecare pozitie din labirint se trec valorile ecuatiei sale in
+  matrice. Pentru asta se verifica pe rand daca pozitia din labirint este in
+  stanga/dreapta pe ultimul rand, daca e pe ultimul rand dar nu in colturi,
+  daca se afla pe marginea din stanga/dreapta, sau daca este oriunde altundeva.
+  La final, vectorul coloana b (initializat cu 0 pe toate pozitiile) ia
+  valoarea 1 pentru pozitiile de pe ultima linie.
+
+  matrix_to_csr.m
+
+    Se parcurge toata matricea si se retin cate elemente diferite de 0 sunt.
+  Apoi se respecta algoritmul propriu-zis din cerinta.
+
+  Jacobi_factorization.m & Jacobi_sparse.m
+
+    Algoritmul Jacobi de rezolvare a unui SEL.
+
+
+Task 2
+
+  clustering_pc.m & compute_cost_pc.m
+
+    In loc sa am NC liste cu puncte, am tinut minte intr-un vector de lungime
+  n (= nr. de puncte) carui cluster apartin punctele (in idPoints(i) se
+  memoreaza clusterul corespunzator punctului i).Pe acest vector il modific la
+  fiecare iteratie (adica pana cand pozitia centroizilor ramane aproximativ
+  aceeasi). Mai multe detalii in comentariile din cod.
+
+
+Task 3
+
+  rgbHistogram.m
+
+    Vectorul aux se foloseste pentru a calcula cati pixeli din fiecare culoare
+  (R, G, B) au valorile in intervalele de lungime 256 / count_bins. Folosesc o
+  matrice auxiliara (imageAux) ca sa retin matricea pentru fiecare culoare, o
+  transform in vector (imageVector), iar apoi aplic histc pe acel vector.
+
+  hsvHistogram.m
+
+    Acelasi algoritm ca la rgbHistogram, doar ca intervalele sunt de lungime
+  1.01 / count_bins (valoarea maxima a lui H, S sau V fiind 1); functia
+  contine si algoritmul de schimbare a matricei din RGB in HSV (e acelasi din
+  cerinta). Am lucrat direct cu matrice (ca sa nu imi dea checkerul timeout),
+  doar ca am intampinat urmatoarele probleme: functiile min si max compara doar
+  cate 2 matrice; in momentul in care puneam si un al treilea argument primeam
+  warningul "max: second argument is ignored", asa ca am comparat pe rand, doua
+  cate doua; apoi, pentru a putea calcula matricea H (hue), a fost nevoie sa iau
+  niste matrice auxiliare (aux, R, G, B) deoarece aveam probleme cu sintaxa (mai
+  multe detalii in comentariile din cod).
+
+  SST.m & Householder.m
+
+    Doar niste algoritmi basic, nimic de explicat.
+
+  preprocess.m
+
+    Mai intai se verifica ce fel de histograma s-a ales, apoi se memoreaza
+  in catFiles si notCatFiles toate numele pozelor cu pisici/fara pisici. Se
+  pune 1 in y pe primele m1 pozitii, apoi -1 pe urmatoarele m2 pozitii (m1 si
+  m2 sunt numarul de linii din catFiles, respectiv notCatFiles, adica numarul
+  de poze cu pisici/fara pisici). Apoi se realizeaza tipul de histograma ceruta
+  pentru fiecare poza si se memoreaza in X.
+
+  learn.m
+
+    Se rezolva ecuatia X_tilda * w = y, cu ajutorul functiilor SST.m si
+  Householder.m (se transforma X_tilda in Q si R, iar apoi se aplica SST pe R
+  si Q' * y).
+
+  evaluate.m
+
+    Se preproceseaza imaginile din "path_to_testset", iar apoi se calculeaza
+    numarul de estimari care coincid cu datele reale.
+
+
+Task 4
+
+  learn.m
+
+    Se scaleaza X-ul, apoi se aplica algoritmul din cerinta.
+
+  evaluate.m
+
+    Fix acelasi program ca la "evaluate.m" de la taskul 3 doar ca la inceput se
+  scaleaza X-ul.
