@@ -1,0 +1,60 @@
+Torcea Octavian 314CA
+
+      Functia "convertPermission" primeste ca parametru un vector char si
+converteste permisiunile fisierului reprezentate prin litere in octal. Se
+parcurge vectorul de tip char octet cu octet. Primii 3 octeti reprezinta
+permisiunile pentru proprietarul fisierului, urmatorii 3 pentru grup, iar
+ultimii 3 pentru alti utilizatori.
+
+      Funcia "checksum" primeste ca parametru un vector char de 512 caractere
+(adica record.charptr) si calculeaza suma tuturor octetilor din header.
+
+      Functia "convertDate" primeste ca parametru doi vectori char ce
+reprezinta data in format year-month-day si respectiv hour:minute:second.
+Calculeaza cate secunde au trecut de la data de 1970-01-01 00:00:00 pana la
+data respectiva.
+
+      Functia "create" primeste ca parametri doi vectori de tip char ce
+reprezinta numele arhivei ce va fi creata si numele directorului ce va fi
+arhivat. Se deschid fisierele "files.txt" si "usermap.txt". Se parcurge linie
+cu linie fisierul "files.txt" si se memoreaza in header pe rand fiecare
+proprietate a structurii in ordinea in care acestea apar in fisier (mai multe
+informatii in comentariile codului). Se verifica daca se poate deschide
+fisierul al carui nume l-am luat din files.txt, apoi se cauta in
+"usermap.txt" uid-ul si gid-ul pentru proprietarul respectivului fisier. Se va
+crea apoi "arhiva" si se scrie in arhiva headerul. Se introduc apoi datele din
+fisierul care trebuie arhivat si apoi se va completa cu NULL pana cand
+dimensiunea va ajunge la un multiplu de 512. La finalul arhivei se vor adauga
+512 NULL-uri. Daca operatiunea s-a incheiat fara erori se va afisa mesajul
+"> Done!". In caz contrar se va afisa "> Failed!". La final se vor inchide
+fisierele.
+
+      Functia "list" primeste ca parametru un vector char (ce reprezinta numele
+arhivei) si are rolul de a afisa continutul arhivei. Se verifica mai intai daca
+arhiva exista. Se afiseaza numele primului fisier si se memoreaza dimensiunea
+fisierului pentru a se putea face saltul la headerul urmatorului fisier, de
+unde se va afisa numele urmatorului fisier. Se repeta procesul pana cand se va
+ajunge la cei 512 NULL de la sfarsitul arhivei. Daca pe parcursul functiei apar
+erori se va afisa mesajul "> File not found!".
+
+      Functia "extract" primeste ca parametri doi vectori char ce reprezinta
+numele fisierului ce urmeaza a fi extras din arhiva si numele arhivei din care
+se face extragerea. Se verifica prima data daca exista arhiva, apoi se va
+extrage din header numele unui fisier. Daca sirul de caractere extras este
+identic cu numele fisierului primit ca parametru, se va memora dimensiunea
+acestuia si se vor scrie in noul fisier ("extracted_numefisier") datele din
+arhiva (in functie de dimensiune). In cazul in care sirul de caractere difera,
+se va memora dimensiunea respectivului fisier pentru a se putea face saltul la
+urmatorul header. Se repeta procesul pana cand se va ajunge la cei 512 NULL de
+la sfarsitul arhivei. Daca functia se executa cu succes se va afisa mesajul
+"> File extracted!". In caz contrar, se afiseaza mesajul "> File not found!".
+
+      Functia main va interpreta comenzile primite de la tastaura. In cazul in
+care se primeste comanda "exit", executia programului va inceta. In cazul
+comenzi "create" se verifica daca ea va avea inca doi parametri (in caz contrar
+se afiseaza mesajul "> Wrong command!"). In cazul comenzi "list" se verifica
+daca ea va avea inca un parametru (in caz contrar se afiseaza mesajul
+"> Wrong command!"). In cazul comenzi "extract" se verifica daca ea va avea
+inca doi parametri (in caz contrar se afiseaza mesajul "> Wrong command!").
+Daca nu se introduce niciuna dintre comenzile de mai sus se afiseaza mesajul
+"> Wrong command!".
