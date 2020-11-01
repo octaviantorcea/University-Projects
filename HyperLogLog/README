@@ -1,0 +1,22 @@
+Copyright 2020 Torcea Octavian
+
+
+freq.c: Pretty straightforward, nici nu stiu daca am ce sa explic aici.
+
+
+hash.c: Am un hashtable in care construiesc un vector de structuri de tip
+fakeNode (in care retin cuvantul si numarul de aparitii al acestuia). Functia
+put verifica daca pozitia cu numarul de ordine generat prima oara este goala.
+Daca e goala, pune acolo, altfel verifica daca cele doua key sunt identice, caz
+in care frecventa acelui cuvant creste. Daca nu sunt identice, trec la
+urmatorul index si aplic iar algoritmul descris mai sus. Se opreste cand ajunge
+la una dintre cele doua situatii.
+
+
+hll.c: Pentru fiecare numar din fisierul de input se aplica functia de hash. Se
+aleg primii 11 biti din numarul rezultat (pentru a putea gasi bucketul
+corespunzator), apoi se calculeaza lungimea secventei "000...1" de la inceputul
+numarului obtinut in urma eliminarii primilor 11 biti (catul impartirii
+numarului la 2048). In cazul in care aceasta este mai mare decat cea gasita
+anterior pentru acelasi numar, se inlocuieste valoarea. La final se calculeaza
+E-ul cu formulele din cerinta.
