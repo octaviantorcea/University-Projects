@@ -1,0 +1,19 @@
+Torcea Octavian 314CA
+
+      Functia "allocMatrix" are rolul de a aloca dinamic memorie pentru o matrice si de a citi elementele acesteia de la tastatura. Primeste ca parametru numarul de linii si returneaza matricea nou formata. Primul element al fiecarei linii va reprezenta numarul de elemente de pe acea linie (daca elemtele unei linii sunt {100, 200, 300}, linia din matrice va fi {3, 100, 200, 300}) .
+
+      Functia "freeMatrix" elibereaza memoria alocata.
+
+      Functia "task1" va calcula media aritmetica a valorilor octetilor de pe conturul "hartii". Primeste ca parametrii matricea (adica "harta") si numarul de linii ale matricei si va returna media aritmetica. Se calculeaza pe rand suma octetilor de pe prima linie, suma ultimilor octeti de pe a doua linie pana la linia n - 1, suma tuturor octetilor de pe ultima linie si in final suma primilor octeti de pe a doua linie pana la linia n - 1. Suma se calculeaza cu ajutorul pointerului de tip char "byte" ce va lua valorile octetilor de la cel mai nesemnificativ la cel mai semnificativ.
+
+      Functia "task2" va apela alte functii ("del..", "swap..", si "modify...") ce vor modifica "harta" in functie de ce operatiuni sunt date de la tastatura. Va primi ca parametrii "harta" si numarul de linii.
+
+      Functiile de tipul "del..." modifica 1, 2 sau 4 octeti (char, short, int) in 0 in functie de parametrii (line, indexData) primiti. Trebuie tinut cont de faptul ca in matrice elementele reale ale hartii incep cu indexul 1, iar in enuntul temei se specifica faptul ca pornesc de la indexul 0. Variabila "col" va lua valoarea elementului matricei in cadrul caruia se va realiza "stergerea". Variabila "index" reprezinta numarul byte-ului de la care va porni modificarea.
+
+      Functiile de tipul "swap..." inverseaza 2 sau 4 octeti din cadrul unui element al matricei (functia "swapChar" nu are sens deorece s-ar schimba un octet cu el insusi si din acest motiv nu a fost implementata). Variabelele "col" si "index" au acelasi rol ca si la functiile "del..." .
+
+      Functiile de tipul "modify..." modifica valoarea a 1, 2 sau 4 octeti din cadrul unui element al matricei intr-o valoare primita de la tastatura. Daca elementul ce trebuie modificat nu se afla in interiorul hartii, functia va aloca dinamic memorie pana la elementul ce trebuie modificat si va initializa toti octetii adaugati cu valoarea 0. De asemenea trebuie modificat si primul element al matricei ce avea rolul de a tine minte numarul de elemente de pe acea linie. Se va folosi un pointer de tip char ("new") ce va parcurge pe rand octetii din valoarea noua primita de la tastatura pentru a modifica valoarea din matrice a octetilor corespunzatori.
+
+      Functia "task3" are rolul de a gasi cea mai mare "insula" de octeti ce au valoarea 0. In cadrul acestei functii se va crea o noua matrice (alocata dinamic, se va elibera memoria la sfarsitul functiei), copie a "hartii", in care octetii vor avea valoarea 1 daca in matricea originala acestia aveau o valoare diferita de 0, sau 0 daca si in matricea originala aveau tot valoarea 0. Apoi se va apela functia "col". Functia "col" porneste de la un byte din matricea copie. Verifica daca este 0 sau 1. Daca este 0 il va modifica in 1 si va face recursiv aceasta operatie cu octetii vecini pana in momentul in care nu va mai avea posibilitatea de a trece la un byte vecin ce are valoarea 0. Va contoriza fiecare modificare a unui byte in 1 in variabila "aux" ce va reprezenta si marimea respectivei "insule" de 0-uri. Revenind la functia "task3", aceasta va afisa la final coordonatele de unde incepe cea mai mare "insula" de 0-uri (line, collumn), cat si dimensiunea acesteia (size).
+
+      In functia "main" va citi numarul de linii ale "hartii", se va aloca memoria necesara matricei, se vor apela functiile "task1", "task2", "task3" si se va elibera la sfarsit memoria alocata "hartii".
